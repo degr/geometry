@@ -6,7 +6,7 @@ import org.forweb.geometry.shapes.*;
 
 import java.util.Random;
 
-public class Lines {
+public class SpeedTest {
 
 
     public static void main(String args[]){

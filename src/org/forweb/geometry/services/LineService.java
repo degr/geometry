@@ -9,7 +9,8 @@ import org.forweb.geometry.shapes.Point;
 public class LineService {
 
     public static Point[] lineIntersectCircle(Line line, Circle circle) {
-        /*if(!BoundsService.isBoundInsideOfBound(getBounds(line), CircleService.getBounds(circle))) {
+        /*without this check it work a little bit faster.
+        if(!BoundsService.isBoundsIntersectBounds(getBounds(line), CircleService.getBounds(circle))) {
             return Utils.EMPTY;
         }*/
         Point pointB = line.getB();
@@ -18,7 +19,7 @@ public class LineService {
             if (Math.pow(pointA.getX() - circle.getX(), 2) + Math.pow(pointA.getY() - circle.getY(), 2) == circle.getRadius() * circle.getRadius()) {
                 return new Point[]{pointA};
             } else {
-                return Utils.EMPTY;
+                return PointService.EMPTY;
             }
         }
         double baX = pointB.getX() - pointA.getX();
@@ -35,7 +36,7 @@ public class LineService {
 
         double disc = pBy2 * pBy2 - q;
         if (disc < 0) {
-            return Utils.EMPTY;
+            return PointService.EMPTY;
         }
         double tmpSqrt = Math.sqrt(disc);
         double abScalingFactor1 = -pBy2 + tmpSqrt;
@@ -50,7 +51,7 @@ public class LineService {
             if(out1 == p1) {
                 return new Point[]{p1};
             } else {
-                return Utils.EMPTY;
+                return PointService.EMPTY;
             }
         }
         Point p2 = new Point(
@@ -68,18 +69,17 @@ public class LineService {
             if(out2 == p2) {
                 return new Point[]{p2};
             } else {
-                return Utils.EMPTY;
+                return PointService.EMPTY;
             }
         }
     }
 
 
-
-    public static Point[] lineBoundIntersections(Line line, Bounds rectangle) {
-        if(!BoundsService.isBoundInsideOfBound(rectangle, getBounds(line))) {
-            return Utils.EMPTY;
+    public static Point[] lineBoundsIntersections(Line line, Bounds rectangle) {
+        if(!BoundsService.isBoundsIntersectBounds(rectangle, getBounds(line))) {
+            return PointService.EMPTY;
         }
-        Line[] lines1 = BoundsService.getBoundLines(rectangle);
+        Line[] lines1 = BoundsService.getBoundsLines(rectangle);
         Point[] out = new Point[4];
         int index = 0;
         for(Line line1 : lines1) {
@@ -161,11 +161,11 @@ public class LineService {
                     }
                     return new Point[]{start, end};
                 } else {
-                    return Utils.EMPTY;
+                    return PointService.EMPTY;
                 }
             }
         } else {
-            return Utils.EMPTY;
+            return PointService.EMPTY;
         }
     }
 
@@ -176,9 +176,19 @@ public class LineService {
      * @return distance between two points
      */
     public static double getDistance(Point pointA, Point poinB) {
-        return Math.sqrt(
-                Math.pow(poinB.getX()-pointA.getX(), 2) + Math.pow(poinB.getY()-pointA.getY(), 2)
-        );
+        return getDistance(pointA.getX(), pointA.getY(), poinB.getX(), poinB.getY());
+    }
+
+    /**
+     * Distance between two points
+     * @param x1 point1 x
+     * @param y1 point1 y
+     * @param x2 point2 x
+     * @param y2 point2 y
+     * @return distance between them
+     */
+    public static double getDistance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
     }
 
     /**

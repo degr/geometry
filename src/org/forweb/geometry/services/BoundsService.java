@@ -3,23 +3,21 @@ package org.forweb.geometry.services;
 import org.forweb.geometry.shapes.*;
 
 public class BoundsService {
-    public static Point[] circleIntersectRectangle(Circle circle, Bounds rectangle) {
-        return null;
-    }
-    public static Point[] circleIntersectCircle(Circle circle1, Circle circle2) {
-        return null;
-    }
-
-
-    public static Point[] boundBoundIntersections(Bounds rectangle1, Bounds rectangle2) {
-        if(rectangle1.equals(rectangle2)) {
+    /**
+     * Search for bounds intersection points.
+     * @param bounds1 Bounds
+     * @param bounds2 Bounds
+     * @return null in case when bounds are equal, Point[] otherwise
+     */
+    public static Point[] boundsBoundsIntersections(Bounds bounds1, Bounds bounds2) {
+        if(bounds1.equals(bounds2)) {
             return null;
         }
-        if(!isBoundInsideOfBound(rectangle1, rectangle2)) {
-            return Utils.EMPTY;
+        if(!isBoundsIntersectBounds(bounds1, bounds2)) {
+            return PointService.EMPTY;
         }
-        Line[] lines1 = getBoundLines(rectangle1);
-        Line[] lines2 = getBoundLines(rectangle2);
+        Line[] lines1 = getBoundsLines(bounds1);
+        Line[] lines2 = getBoundsLines(bounds2);
         Point[] out = new Point[6];
         int index = 0;
         for(Line line1 : lines1) {
@@ -37,7 +35,7 @@ public class BoundsService {
     }
 
 
-    public static boolean isBoundInsideOfBound(Bounds boundsA, Bounds boundsB) {
+    public static boolean isBoundsIntersectBounds(Bounds boundsA, Bounds boundsB) {
         if(boundsA.getY() >= boundsB.getY()) {
             if(boundsA.getY() > boundsB.getY() + boundsB.getHeight()) {
                 return false;
@@ -60,7 +58,7 @@ public class BoundsService {
     }
 
 
-    public static Line[] getBoundLines(Bounds bounds) {
+    public static Line[] getBoundsLines(Bounds bounds) {
         Line[] lines = new Line[4];
         double x12 = bounds.getX() + bounds.getWidth();
         double y12 = bounds.getY() + bounds.getHeight();

@@ -4,8 +4,6 @@ import org.forweb.geometry.shapes.Point;
 
 public class Utils {
 
-    public static final Point[] EMPTY = new Point[0];
-
     static Point[] clearResult(Point[] input) {
         int nullCount = 0;
 

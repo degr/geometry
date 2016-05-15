@@ -10,9 +10,9 @@ public class Test {
     public static void main(String ... args) {
         tesBounds();
         testLineLine();
-        lineIntersectCircle();
         pointTest();
         testCircles();
+        lineIntersectCircle();
     }
 
     private static void testCircles() {
@@ -185,18 +185,13 @@ public class Test {
         System.out.println("==== Test Circles ====");
         Line line1 = new Line(10, 10, 50, 50);
         Circle circle1 = new Circle(22, 22, 10);
-        System.out.print("line intersect circle, (2): ");
+        System.out.print("line intersect circle (|), (2): ");
         print( LineService.lineIntersectCircle(line1, circle1));
 
         Line line2 = new Line(10, 10, 20, 20);
         Circle circle2 = new Circle(30, 30, 15);
-        System.out.print("line intersect circle, (1): ");
+        System.out.print("line intersect circle (x), (1): ");
         print( LineService.lineIntersectCircle(line2, circle2));
-
-        Line line3 = new Line(10, 10, 20, 10);
-        Circle circle3 = new Circle(29, 29, 20);
-        System.out.print("line outside of circle, (0): ");
-        print( LineService.lineIntersectCircle(line3, circle3));
 
         Line line4 = new Line(10, 10, 20, 20);
         Circle circle4 = new Circle(15, 15, 40);
@@ -207,6 +202,12 @@ public class Test {
         Circle circle5 = new Circle(10, 20, 10);
         System.out.print("zero-size line on circle, (1): ");
         print( LineService.lineIntersectCircle(line5, circle5));
+
+
+        Line line6 = new Line(225, 123, 342, 123);
+        Circle circle6 = new Circle(307, 143, 20);
+        System.out.print("line on circle, (|), (1): ");
+        print( LineService.lineIntersectCircle(line6, circle6));
     }
 
     private static void print(Point[] points) {

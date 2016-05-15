@@ -35,6 +35,9 @@ public class LineService {
         double q = c / a;
 
         double disc = pBy2 * pBy2 - q;
+        if(disc <= 0.0001 && disc >= -0.0001) {
+            disc = 0;
+        }
         if (disc < 0) {
             return PointService.EMPTY;
         }
@@ -72,6 +75,10 @@ public class LineService {
                 return PointService.EMPTY;
             }
         }
+    }
+
+    private static double getDistance(Line line) {
+        return getDistance(line.getA(), line.getB());
     }
 
 

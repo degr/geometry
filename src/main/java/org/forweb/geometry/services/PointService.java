@@ -14,7 +14,7 @@ public class PointService {
      * @param circle Circle
      * @return 0 if point ON circle, 1 if point INSIDE of circle, -1 if point OUTSIDE of circle
      */
-    public static int pointBelongToCircle(Point point, Circle circle) {
+    public static double pointBelongToCircle(Point point, Circle circle) {
         double r = Math.pow(circle.getRadius(), 2),
                 a = Math.pow(circle.getX() - point.getX(), 2),
                 b = Math.pow(circle.getY() - point.getY(), 2);
@@ -22,7 +22,8 @@ public class PointService {
         if (check == r) {
             return 0;
         } else if (check < r) {
-            return 1;
+            double back = r - check;
+            return back / r;
         } else {
             return -1;
         }

@@ -38,7 +38,9 @@ public class Test {
     private static void pointTest() {
         System.out.println("==== point test bounds ====");
         System.out.println("point on circle (0) : " + PointService.pointBelongToCircle(new Point(0, 10), new Circle(10, 10, 10)));
-        System.out.println("point in circle (1) : " + PointService.pointBelongToCircle(new Point(5, 5), new Circle(10, 10, 10)));
+        System.out.println("point in circle (0.5) : " + PointService.pointBelongToCircle(new Point(5, 5), new Circle(10, 10, 10)));
+        System.out.println("point in circle (0.82) : " + PointService.pointBelongToCircle(new Point(7, 7), new Circle(10, 10, 10)));
+        System.out.println("point in circle (1) : " + PointService.pointBelongToCircle(new Point(10, 10), new Circle(10, 10, 10)));
         System.out.println("point outside of circle (1) : " + PointService.pointBelongToCircle(new Point(0, 7), new Circle(10, 10, 10)));
 
         System.out.println("point on line (true) : " + PointService.pointBelongToLine(

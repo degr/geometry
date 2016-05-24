@@ -51,7 +51,11 @@ public class CircleService {
                 distance1 = (Math.pow(circle1.getRadius(), 2) - Math.pow(circle1.getRadius(), 2) + Math.pow(distance, 2)) / (2 * distance);
             }
             Point point0 = calculatePointZero(circle1, circle2, distance, distance1);
-            double h = Math.sqrt(Math.pow(circle1.getRadius(), 2) - Math.pow(distance1, 2));
+            double d1 = Math.pow(circle1.getRadius(), 2);
+            double d2 = Math.pow(distance1, 2);
+            double d3 = Math.max(d1, d2);
+            double d4 = Math.min(d1, d2);
+            double h = Math.sqrt(d3 - d4);
             Point[] out = new Point[2];
             out[0] = new Point(
                     point0.getX() + (h * (circle2.getY() - circle2.getY())) / distance,

@@ -1,5 +1,6 @@
 package org.forweb.geometry.services;
 
+import org.forweb.geometry.misc.Angle;
 import org.forweb.geometry.shapes.Circle;
 import org.forweb.geometry.shapes.Line;
 import org.forweb.geometry.shapes.Point;
@@ -7,6 +8,19 @@ import org.forweb.geometry.shapes.Point;
 public class PointService {
 
     public static final Point[] EMPTY = new Point[0];
+
+    public Point translate(Point rotationCenter, Point point, Angle angle) {
+        if (angle.doubleValue() == 0) {
+            return point;
+        }
+        double x = (angle.cos() * (point.getX() - rotationCenter.getX())) -
+                (angle.sin() * (point.getY() - rotationCenter.getY())) +
+                rotationCenter.getX();
+        double y = (angle.sin() * (point.getX() - rotationCenter.getX())) +
+                (angle.cos() * (point.getY() - rotationCenter.getY())) +
+                rotationCenter.getY();
+        return new Point(x, y);
+    }
 
     /**
      * Find point position realtive to circle

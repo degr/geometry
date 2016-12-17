@@ -9,7 +9,7 @@ public class PointService {
 
     public static final Point[] EMPTY = new Point[0];
 
-    public Point translate(Point rotationCenter, Point point, Angle angle) {
+    public static Point translate(Point rotationCenter, Point point, Angle angle) {
         if (angle.doubleValue() == 0) {
             return point;
         }

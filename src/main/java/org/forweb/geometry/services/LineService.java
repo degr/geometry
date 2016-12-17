@@ -245,11 +245,11 @@ public class LineService {
         return new Bounds(x, y, width, height);
     }
 
-    public boolean lineHasIntersections(Line lineA, Line lineB) {
+    public static boolean lineHasIntersections(Line lineA, Line lineB) {
         return doIntersect(lineA.getA(), lineA.getB(), lineB.getA(), lineB.getB());
     }
 
-    private boolean onSegment(Point p, Point q, Point r)
+    private static boolean onSegment(Point p, Point q, Point r)
     {
         return (q.getX() <= Math.max(p.getX(), r.getX()) && q.getX() >= Math.min(p.getX(), r.getX()) &&
                 q.getY() <= Math.max(p.getY(), r.getY()) && q.getY() >= Math.min(p.getY(), r.getY()));
@@ -261,7 +261,7 @@ public class LineService {
     // 1 --> Clockwise
     // 2 --> Counterclockwise
     //return int
-    private int orientation(Point p, Point q, Point r)
+    private static int orientation(Point p, Point q, Point r)
     {
         // See http://www.geeksforgeeks.org/orientation-3-ordered-points/
         // for details of below formula.
@@ -275,7 +275,7 @@ public class LineService {
 
     // The main function that returns true if line segment 'p1q1'
 // and 'p2q2' intersect.
-    private boolean doIntersect(Point p1, Point q1, Point p2, Point q2)
+    private static boolean doIntersect(Point p1, Point q1, Point p2, Point q2)
     {
         // Find the four orientations needed for general and
         // special cases
